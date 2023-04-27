@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: School
+          uri: http://localhost:8182/
+          predicates:
+            - Path=/student/**   
+        - id: School-webflux
+          uri: http://localhost:8686/
+          predicates:
+            - Path=/student-detail/**
+       
+     
+      
+server:
+      port: 9100

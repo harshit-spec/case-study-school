@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: user-management
+          uri: lb://user-management
+          predicates:
+            - Path=/**   
+        - id: inventory-service
+          uri: lb://inventory-service
+          predicates:
+            - Path=/inventory/**
+        - id: Room-Management
+          uri: lb://Room-Management
+          predicates:
+            - Path=/**   
+      globalcors:
+       corsConfigurations:
+          '[/**]':
+            allowedOrigins: "http://localhost:3000/"
+            allowedMethods: "*"
+            allowedHeaders: "*"     
+            allow-credentials: true      
+      
+server:
+      port: 9100
